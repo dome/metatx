@@ -1,13 +1,8 @@
-# Sample Hardhat Project
+# MetaTX
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
+By using meta transactions, one user can sign a message and it can be executed by another. Meaning the first user who signed the message will not have to pay, in this example, a tranfer fee. By introducing a nonce for each signature, there is no possibiliby of a signature replay, as shown in the unit tests.
 
 ```shell
-npx hardhat help
+npm install
 npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
 ```
