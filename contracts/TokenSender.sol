@@ -4,14 +4,6 @@ pragma solidity ^0.8.17;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
-contract Token is ERC20 {
-    constructor() ERC20("", "") {}
-
-    function freeMint(uint256 amount) public {
-        _mint(msg.sender, amount);
-    }
-}
-
 contract TokenSender {
     error InvalidSignatureSource();
     error TransferFailed();
@@ -30,6 +22,8 @@ contract TokenSender {
         address signer = signedMessageHash.recover(sig);
 
         if (signer != signer) revert InvalidSignatureSource();
+        
+        if (sender != signer) revert InvalidSignatureSource();
 
         executed[signedMessageHash] = true;
         bool sent = ERC20(tokenContract).transferFrom(sender, recipient, amount);
